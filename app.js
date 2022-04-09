@@ -14,10 +14,11 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 app.get('/', (req, res) => {
-    res.send('<h1>Sever</h1>');
+    res.render('home');
 });
-app.use('/xsmn', xsmnRoutes);
+
 app.use('/admin', adminRoutes);
+app.use('/xsmn', xsmnRoutes);
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
