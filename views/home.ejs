@@ -4,9 +4,200 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+            crossorigin="anonymous"
+        />
+        <style>
+            .backgroud {
+                background-color: rgb(200, 206, 212);
+                padding: 20px;
+                max-height: 100vh;
+            }
+            table,
+            td {
+                min-width: 100%;
+                border-collapse: collapse;
+                border: 1px solid black;
+                text-align: center;
+            }
+            .form-search {
+                background-color: #feffe5;
+                padding: 20px;
+            }
+            th {
+                min-width: 5rem;
+            }
+        </style>
         <title>Home</title>
     </head>
     <body>
-        <h1><a href="/admin/quay-so">ĐI TỚI QUAY SỐ</a></h1>
+        <main>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/">Menu</a>
+                    <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div
+                        class="collapse navbar-collapse"
+                        id="navbarNavDropdown"
+                    >
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link active"
+                                    aria-current="page"
+                                    href="#"
+                                    >Trang chủ</a
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">XSMB</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">XSMT</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/xsmn/hcm">XSMN</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a
+                                    class="nav-link dropdown-toggle"
+                                    href="#"
+                                    id="navbarDropdownMenuLink"
+                                    role="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                >
+                                    Dropdown link
+                                </a>
+                                <ul
+                                    class="dropdown-menu"
+                                    aria-labelledby="navbarDropdownMenuLink"
+                                >
+                                    <li>
+                                        <a class="dropdown-item" href="#"
+                                            >Action</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#"
+                                            >Another action</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#"
+                                            >Something else here</a
+                                        >
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-3 backgroud">
+                        <ul>
+                            <li>Dò vé số</li>
+                            <li>Thống kê</li>
+                            <li>Lịch sử dò vé</li>
+                        </ul>
+                        <div class="form-search">
+                            <form>
+                                <label>Ngày trên vé</label>
+                                <div class="input-group input-group-sm">
+                                    <input type="date" class="form-control" />
+                                </div>
+                                <label>Tỉnh/TP</label>
+                                <select class="form-select form-select-sm">
+                                    <option>--Chọn Tỉnh/TP--</option>
+                                    <option>TP.HCM</option>
+                                    <option>Đồng Nai</option>
+                                    <option>Cần Thơ</option>
+                                    <option>Bình Dương</option>
+                                    <option>Tiền Giang</option>
+                                </select>
+                                <label>Số vé</label>
+                                <div class="input-group input-group-sm mb-3">
+                                    <input type="number" class="form-control" />
+                                </div>
+                                <button class="btn btn-warning">Dò vé</button>
+                            </form>
+                        </div>
+
+                        <div class="calender">
+                            <div>CALENDER</div>
+                            <table>
+                                <tr>
+                                    <td>CN</td>
+                                    <td>T2</td>
+                                    <td>T3</td>
+                                    <td>T4</td>
+                                    <td>T5</td>
+                                    <td>T6</td>
+                                    <td>T7</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <a href="/admin/quay-so">ĐI TỚI QUAY SỐ</a>
+                    </div>
+                    <div class="col-6">
+                        <h1>Kết quả xổ số Miền Nam</h1>
+                        <p>Ngày:</p>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Thứ 2</th>
+                                    <th scope="col">HCM</th>
+                                    <th scope="col">Đồng Nai</th>
+                                    <th scope="col">Cần Thơ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">G.DB</th>
+                                    <td>1111</td>
+                                    <td>2222</td>
+                                    <td>3333</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">G.1</th>
+                                    <td>1234</td>
+                                    <td>2233</td>
+                                    <td>3377</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">G.2</th>
+                                    <td>
+                                        <div>1234</div>
+                                        <div>4567</div>
+                                        <div>7895</div>
+                                        <div>2314</div>
+                                    </td>
+                                    <td>1234 4567 7895 2314</td>
+                                    <td>1234 4567 7895 2314</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-3 backgroud">
+                        <h1>Table</h1>
+                    </div>
+                </div>
+            </div>
+        </main>
     </body>
 </html>
