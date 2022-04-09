@@ -1,0 +1,47 @@
+<ul>
+    <li>Dò vé số</li>
+    <li>Thống kê</li>
+    <li>Lịch sử dò vé</li>
+</ul>
+<div class="form-search">
+    <form action="/ticket" method="post">
+        <div>
+            <label>Ngày trên vé</label>
+            <div class="input-group input-group-sm">
+                <input type="date" class="form-control" name="dayOfTicket" />
+            </div>
+        </div>
+        <div>
+            <label>Tỉnh/TP</label>
+            <select class="custom-select" name="cityOfTicket">
+                <option selected>-- Chọn Tỉnh/Tp --</option>
+                <option value="1">TP.HCM</option>
+                <option value="2">Đồng Nai</option>
+                <option value="3">Cần Thơ</option>
+                <option value="4">Bình Dương</option>
+                <option value="5">Tiền Giang</option>
+            </select>
+        </div>
+        <div>
+            <label>Số vé</label>
+            <div class="input-group input-group-sm mb-3">
+                <input type="number" class="form-control" name="numOfTicket" />
+            </div>
+        </div>
+        <button type="submit" class="btn btn-warning">Dò vé</button>
+    </form>
+</div>
+<div class="calender">
+    <div>CALENDER</div>
+    <table>
+        <tr>
+            <td>CN</td>
+            <td>T2</td>
+            <td>T3</td>
+            <td>T4</td>
+            <td>T5</td>
+            <td>T6</td>
+            <td>T7</td>
+        </tr>
+    </table>
+</div>

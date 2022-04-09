@@ -10,19 +10,29 @@ const app = express();
 
 const URL_MONGODB = 'mongodb://localhost:27017/do-an';
 
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json({ extended: false }));
+
 app.set('view engine', 'ejs');
 app.set('views', 'views');
+
+app.use((req, res, next) => {
+    User.findById('6250decd35ed03f13fbb03b9')
+        .then((user) => {
+            req.user = user;
+            next();
+        })
+        .catch((err) => console.log(err));
+});
 
 app.get('/', (req, res) => {
     res.render('home');
 });
 
+app.use(require('./routes/ticket'));
 app.use('/admin', adminRoutes);
 app.use('/xsmn', xsmnRoutes);
-
-app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.json({ extended: false }));
 
 const port = process.env.PORT || 8080;
 
