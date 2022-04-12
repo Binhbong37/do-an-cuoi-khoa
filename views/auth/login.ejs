@@ -1,0 +1,40 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/auth.css">
+</head>
+
+<body>
+   <%- include('../includes/navigation.ejs') %>
+
+    <main>
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left Side -->
+                <div class="col-3 backgroud">
+                    <%- include('../includes/leftSide.ejs') %>
+                </div>
+                <!-- center -->
+                <div class="col-6">
+                    <div class="user-message user-message--error">Error</div>
+            <form>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control" id="email"placeholder="Nhập email">
+                </div>
+                <div class="form-group">
+                  <label for="password">Mật khẩu</label>
+                  <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+        <div class="centered">
+            <a href="/reset">Reset Password</a>
+        </div>
+                </div>
+                <!-- rightSide -->
+                <div class="col-3 backgroud">
+                    <%- include('./includes/rightSide.ejs') %>
+                </div>
+            </div>
+        </div> 
+    </main>
+<%- include('../includes/end.ejs') %>

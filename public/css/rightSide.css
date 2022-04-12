@@ -1,0 +1,11 @@
+.xscm h1 a{
+    display: block;
+    background-color: rgb(226, 65, 36);
+    color: white;
+    font-size: 20px;
+    padding: 5px;
+}
+
+.xscm ul li {
+    list-style: none;
+}

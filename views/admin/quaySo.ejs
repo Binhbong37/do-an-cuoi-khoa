@@ -4,14 +4,12 @@
         padding: 10px;
     }
 </style>
-    <body>
-        <main>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <%- include('../includes/navigation.ejs') %>
-            </nav>
-            <h1>Quay số hôm nay</h1>
-            <div class="container">
-                <div class="row">
+<body>
+    <main>
+        <%- include('../includes/navigation.ejs') %>
+        <h1>Quay số hôm nay</h1>
+        <div class="container">
+            <div class="row">
                 <div class="xsmn col-4">
                     <h3>Xổ số Miền Nam</h3>
                     <!-- form HCM -->
@@ -38,10 +36,9 @@
                 </div>
                 <div class="xsmt col-4">
                     <h3>Xổ số Miền Trung</h3>
-
                 </div>
             </div>
-            </div>
-        </main>
-    </body>
-</html>
+        </div>
+    </main>
+</body>
+<%- include('../includes/end.ejs') %>
