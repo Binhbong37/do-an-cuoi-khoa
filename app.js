@@ -1,4 +1,5 @@
 const express = require('express');
+const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
 
@@ -6,12 +7,12 @@ const User = require('./model/user');
 
 const xsmnRoutes = require('./routes/xsmn-routes');
 const adminRoutes = require('./routes/admin');
-const app = express();
+const authRoutes = require('./routes/auth');
 
 const URL_MONGODB = 'mongodb://localhost:27017/do-an';
 
-app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json({ extended: false }));
 
 app.set('view engine', 'ejs');
@@ -33,6 +34,7 @@ app.get('/', (req, res) => {
 app.use(require('./routes/ticket'));
 app.use('/admin', adminRoutes);
 app.use('/xsmn', xsmnRoutes);
+app.use(authRoutes);
 
 const port = process.env.PORT || 8080;
 

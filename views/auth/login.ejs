@@ -1,20 +1,12 @@
 <%- include('../includes/head.ejs') %>
-    <link rel="stylesheet" href="/css/auth.css">
 </head>
 
 <body>
    <%- include('../includes/navigation.ejs') %>
 
-    <main>
-        <div class="container-fluid">
-            <div class="row">
-                <!-- left Side -->
-                <div class="col-3 backgroud">
-                    <%- include('../includes/leftSide.ejs') %>
-                </div>
-                <!-- center -->
-                <div class="col-6">
-                    <div class="user-message user-message--error">Error</div>
+    <main class="container">
+            <h1 style="text-align: center;">Đăng nhập</h1>
+            <div class="user-message user-message--error">Error</div>
             <form>
                 <div class="form-group">
                   <label for="email">Email</label>
@@ -26,15 +18,9 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </form>
-        <div class="centered">
-            <a href="/reset">Reset Password</a>
-        </div>
+                <div class="centered">
+                    <a href="/reset">Reset Password</a>
                 </div>
-                <!-- rightSide -->
-                <div class="col-3 backgroud">
-                    <%- include('./includes/rightSide.ejs') %>
-                </div>
-            </div>
-        </div> 
     </main>
+</body>
 <%- include('../includes/end.ejs') %>

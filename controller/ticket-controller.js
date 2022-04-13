@@ -2,6 +2,8 @@ const Ticket = require('../model/ticketResult');
 
 exports.postTicket = (req, res) => {
     const { dayOfTicket, cityOfTicket, numOfTicket } = req.body;
+    console.log(req.body);
+    return;
     let newNumber = {
         number: numOfTicket,
     };
