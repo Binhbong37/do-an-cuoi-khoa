@@ -1,41 +1,94 @@
 <%- include('../includes/head.ejs') %>
-<style>
-    .xsmn form {
-        padding: 10px;
-    }
-</style>
 <body>
+    <%- include('../includes/navigation.ejs') %>
     <main>
-        <%- include('../includes/navigation.ejs') %>
-        <h1>Quay số hôm nay</h1>
         <div class="container">
+            <h1>Quay số hôm nay</h1>
             <div class="row">
                 <div class="xsmn col-4">
                     <h3>Xổ số Miền Nam</h3>
-                    <!-- form HCM -->
-                    <form action="/xsmn/hcm" method="post">
+                    <form action="/admin/quay-so" method="post">
+                        <div class="form-group">
+                            <label>Chọn tỉnh</label>
+                            <select name="city" class="form-control">
+                                <option value="59">TP.HCM</option>
+                                <option value="60">Đồng Nai</option>
+                                <option value="63">Tiền Giang</option>
+                                <option value="70">Tây Ninh</option>
+                                <option value="66">Đồng Tháp</option>
+                                <option value="62">Long An</option>
+                                <option value="65">Cần Thơ</option>
+                                <option value="72">Vũng Tàu</option>
+                                <option value="61">Bình Dương</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Chọn Ngày</label>
+                            <input
+                                class="form-control"
+                                type="date"
+                                name="date"
+                                placeholder="chọn ngày"
+                            />
+                        </div>
                         <button type="submit" class="btn btn-primary">
-                            TP.HCM
-                        </button>
-                    </form>
-                    <!-- form Dong_Nai -->
-                    <form action="/xsmn/dn" method="post">
-                        <button type="submit" class="btn btn-primary">
-                            Đồng Nai
-                        </button>
-                    </form>
-                    <!-- form Can Tho -->
-                    <form action="/xsmn/ct" method="post">
-                        <button type="submit" class="btn btn-primary">
-                            Cần Thơ
+                            Quay
                         </button>
                     </form>
                 </div>
                 <div class="xsmb col-4">
                     <h3>Xổ số Miền Bắc</h3>
+                    <form action="/admin/quay-so" method="post">
+                        <div class="form-group">
+                            <label>Chọn tỉnh</label>
+                            <select name="city" class="form-control">
+                                <option value="29">Hà Nội</option>
+                                <option value="17">Thái Bình</option>
+                                <option value="99">Bắc Ninh</option>
+                                <option value="15">Hải Phòng</option>
+                                <option value="34">Hải Dương</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Chọn Ngày</label>
+                            <input
+                                class="form-control"
+                                type="date"
+                                name="date"
+                                placeholder="chọn ngày"
+                            />
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Quay
+                        </button>
+                    </form>
                 </div>
                 <div class="xsmt col-4">
                     <h3>Xổ số Miền Trung</h3>
+                    <form action="/admin/quay-so" method="post">
+                        <div class="form-group">
+                            <label>Chọn tỉnh</label>
+                            <select name="city" class="form-control">
+                                <option value="43">Đà Nẵng</option>
+                                <option value="52">Bình Định</option>
+                                <option value="47">Dak Lak</option>
+                                <option value="81">Gia Lai</option>
+                                <option value="73">Quảng Bình</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Chọn Ngày</label>
+                            <input
+                                class="form-control"
+                                type="date"
+                                name="date"
+                                placeholder="chọn ngày"
+                            />
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Quay
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -1,0 +1,37 @@
+<%- include('./includes/head.ejs') %>
+<body>
+    <!-- nav -->
+    <%- include('./includes/navigation.ejs') %>
+    <main class="container p-5">
+        <form action="/ticket" method="post">
+            <div>
+                <label>Ngày trên vé</label>
+
+                <select class="custom-select" name="dayOfTicket">
+                    <% for (let city of arr) { %>
+                    <option><%= city.day %></option>
+                    <% } %>
+                </select>
+            </div>
+            <div>
+                <label>Tỉnh/TP</label>
+                <select class="custom-select" name="cityOfTicket">
+                    <option selected>-- Chọn Tỉnh/Tp --</option>
+                    <option value="">1</option>
+                </select>
+            </div>
+            <div>
+                <label>Số vé</label>
+                <div class="input-group input-group-sm mb-3">
+                    <input
+                        type="number"
+                        class="form-control"
+                        name="numOfTicket"
+                    />
+                </div>
+            </div>
+            <button type="submit" class="btn btn-warning">Dò vé</button>
+        </form>
+    </main>
+</body>
+<%- include('./includes/end.ejs') %>

@@ -27,9 +27,9 @@ app.use((req, res, next) => {
         .catch((err) => console.log(err));
 });
 
-app.get('/', (req, res) => {
+app.get('/xsmb', (req, res) => {
     res.render('home', {
-        path: '/',
+        path: '/xsmb',
         pageTitle: 'Trang chủ',
     });
 });
