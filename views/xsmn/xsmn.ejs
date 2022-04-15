@@ -7,6 +7,10 @@
         text-align: center;
         max-width: 5px;
     }
+    .hove-item:hover {
+        cursor: pointer;
+        background-color: rgb(224, 161, 161);
+    }
 </style>
 <body>
     <%- include('../includes/navigation.ejs') %>
@@ -37,7 +41,11 @@
                                 <th>G.DB</th>
                                 <% for (let city of allRes) { %> <%
                                 if(city.cityId.date === da) { %>
-                                <td><%= city.G_DB[0] %></td>
+                                <td>
+                                    <div class="hove-item">
+                                        <%= city.G_DB[0] %>
+                                    </div>
+                                </td>
                                 <% } %> <% } %>
                             </tr>
                             <tr>
@@ -45,11 +53,9 @@
                                 <% for (let city of allRes) { %> <%
                                 if(city.cityId.date === da) { %>
                                 <td>
-                                    <ul>
-                                        <% city.G_1.forEach(g1 => { %>
-                                        <li><%= g1 %></li>
-                                        <% }) %>
-                                    </ul>
+                                    <% city.G_1.forEach(g1 => { %>
+                                    <div class="hove-item"><%= g1 %></div>
+                                    <% }) %>
                                 </td>
                                 <% } %> <% } %>
                             </tr>
@@ -59,7 +65,29 @@
                                 if(city.cityId.date === da) { %>
                                 <td>
                                     <% city.G_2.forEach(g1 => { %>
-                                    <div><%= g1 %></div>
+                                    <div class="hove-item"><%= g1 %></div>
+                                    <% }) %>
+                                </td>
+                                <% } %> <% } %>
+                            </tr>
+                            <tr>
+                                <th>G.3</th>
+                                <% for (let city of allRes) { %> <%
+                                if(city.cityId.date === da) { %>
+                                <td>
+                                    <% city.G_3.forEach(g1 => { %>
+                                    <div class="hove-item"><%= g1 %></div>
+                                    <% }) %>
+                                </td>
+                                <% } %> <% } %>
+                            </tr>
+                            <tr>
+                                <th>G.4</th>
+                                <% for (let city of allRes) { %> <%
+                                if(city.cityId.date === da) { %>
+                                <td>
+                                    <% city.G_4.forEach(g1 => { %>
+                                    <div class="hove-item"><%= g1 %></div>
                                     <% }) %>
                                 </td>
                                 <% } %> <% } %>

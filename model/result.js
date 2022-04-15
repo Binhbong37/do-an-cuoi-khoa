@@ -13,6 +13,7 @@ const resultSchema = new Schema({
     G_7: { type: Array, require: true },
     G_8: { type: Array, require: true },
     cityId: { type: Schema.Types.ObjectId, ref: 'Cities', required: true },
+    role: { type: String },
 });
 
 module.exports = mongoose.model('Result', resultSchema);

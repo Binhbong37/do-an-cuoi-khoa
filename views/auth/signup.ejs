@@ -1,5 +1,8 @@
 <%- include('../includes/head.ejs') %>
+  <link rel="stylesheet" href="/css/auth.css">
+
 </head>
+
 
 <body>
    <%- include('../includes/navigation.ejs') %>
@@ -7,31 +10,31 @@
     <main>
         <div class="container">
                 <!-- center -->
-                <div class="mt-3 p-3">
-                    <h1 style="text-align: center;">Đăng ký tài khoản</h1>
+                <div class="p-3">
+                    <h2 style="text-align: center;">Đăng ký tài khoản</h2>
                     <div class="user-message user-message--error">Error</div>
                      <form action="/signup" method="post">
                         <div class="form-group">
                             <label for="name">Họ tên</label>
-                            <input type="text" class="form-control" name = 'name' id="name" placeholder="tên của bạn">
+                            <input type="text" class="form-control" name = 'name' id="name">
                         </div>
                         <div class="form-group">
-                            <label for="email">Họ tên</label>
-                            <input type="text" class="form-control" name="email" id="email" placeholder="Your Email">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control" name="email" id="email">
                         </div>
                         <div class="form-row">
                           <div class="form-group col-md-6">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" name="password" id="password" placeholder="your password">
+                            <label for="password">Mật Khẩu</label>
+                            <input type="password" class="form-control" name="password" id="password">
                           </div>
                           <div class="form-group col-md-6">
-                            <label for="password1">Re-Password</label>
-                            <input type="password" class="form-control" name="password1" id="password1" placeholder="Confirm Password">
+                            <label for="password1">Nhập lại mật khẩu</label>
+                            <input type="password" class="form-control" name="password1" id="password1">
                           </div>
                         </div>
                         <div class="form-group">
-                          <label for="address">Address</label>
-                          <input type="text" class="form-control" name="address" id="address" placeholder="1234 Main St">
+                          <label for="address">Địa chỉ</label>
+                          <input type="text" class="form-control" name="address" id="address">
                         </div>
                         <div class="form-row align-items-center">
                           <div class="col-auto my-1">
@@ -42,8 +45,12 @@
                             </select>
                           </div>
                         </div>
-                        <button type="submit" class="btn btn-primary mr-3">Ok</button>
-                        <button type="button" class="btn btn-danger" id="reset">Reset</button>
+                        <div style="text-align: center">
+                          <button type="submit" class="btn btn-primary mr-3">Ok</button>
+                          <button type="button" class="btn btn-danger" id="reset">Reset</button>
+                          <a class="btn btn-link" href="#">Đã có tài khoản</a>
+
+                        </div>
                     </form>
 
                     <!-- <form action="/signup" method="post">
