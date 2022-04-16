@@ -3,69 +3,104 @@
 <body>
     <%- include('../includes/navigation.ejs') %>
     <main>
-        <div class="container">
-            <div class="row p-3">
-                <h3 class="col-6">Danh sách User</h3>
-                <form class="form-inline my-2 my-lg-0 col-6">
-                    <input
-                        class="form-control mr-sm-2"
-                        type="Tìm kiếm"
-                        placeholder="Search"
-                        aria-label="Search"
-                    />
-                    <button
-                        class="btn btn-outline-success my-2 my-sm-0"
-                        type="button"
-                    >
-                        Tìm
-                    </button>
-                </form>
+        <form action="/admin/delete-many-user" method="post">
+            <div class="container">
+                <h3>Danh sách User</h3>
+                <div class="row">
+                    <div class="col-5">
+                        <div class="d-flex align-items-center">
+                            <select
+                                class="form-control form-control-medium checkbox-with mr-3"
+                                name="action"
+                                required
+                                style="max-width: fit-content"
+                            >
+                                <option value="">--Hành động--</option>
+                                <option value="delete">Xóa</option>
+                            </select>
+                            <button
+                                class="btn btn-primary btn-medium check-all-submit-btn my-3"
+                                disabled
+                            >
+                                Thực hiện
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-7">
+                        <form>
+                            <input type="text" />
+                            <button type="button">Tìm</button>
+                        </form>
+                    </div>
+                </div>
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <td>
+                                <div class="form-check">
+                                    <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        value="id"
+                                        id="checkbox-all"
+                                        name="ChecAll"
+                                    />
+                                </div>
+                            </td>
+                            <th scope="col">STT</th>
+                            <th scope="col">Họ tên</th>
+                            <th scope="col">Giới tính</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Vai trò</th>
+                            <th scope="col">Địa chỉ</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (let i = 0; i < user.length; i++) { %>
+                        <tr>
+                            <td>
+                                <div class="form-check">
+                                    <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        value="<%= user[i]._id %>"
+                                        name="userIds"
+                                    />
+                                </div>
+                            </td>
+                            <td><%= i+ 1%></td>
+                            <td><%= user[i].name %></td>
+                            <td><%= user[i].gender === 0 ? 'Nam' : 'Nữ' %></td>
+                            <td><%= user[i].email %></td>
+                            <td><%= user[i].role %></td>
+                            <td><%= user[i].address %></td>
+                            <td>
+                                <a
+                                    href="/admin/user/<%= user[i]._id %>/edit"
+                                    type="button"
+                                    class="btn btn-warning"
+                                    id="edit"
+                                >
+                                    Sửa
+                                </a>
+                                <a
+                                    href=""
+                                    class="btn btn-danger"
+                                    data-toggle="modal"
+                                    data-target="#delete-user-modal"
+                                    data-id="<%= user[i]._id %>"
+                                >
+                                    Xóa
+                                </a>
+                            </td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                </table>
             </div>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">STT</th>
-                        <th scope="col">Họ tên</th>
-                        <th scope="col">Giới tính</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Vai trò</th>
-                        <th scope="col">Địa chỉ</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% for (let i = 0; i < user.length; i++) { %>
-                    <tr>
-                        <th scope="row"><%= i+ 1%></th>
-                        <td><%= user[i].name %></td>
-                        <td><%= user[i].gender === 0 ? 'Nam' : 'Nữ' %></td>
-                        <td><%= user[i].email %></td>
-                        <td><%= user[i].role %></td>
-                        <td><%= user[i].address %></td>
-                        <td>
-                            <a
-                                href="/admin/user/<%= user[i]._id %>/edit"
-                                type="button"
-                                class="btn btn-warning"
-                                id="edit"
-                            >
-                                Sửa
-                            </a>
-                            <a
-                                href=""
-                                class="btn btn-danger"
-                                data-toggle="modal"
-                                data-target="#delete-user-modal"
-                                data-id="<%= user[i]._id %>"
-                            >
-                                Xóa
-                            </a>
-                        </td>
-                    </tr>
-                    <% } %>
-                </tbody>
-            </table>
-        </div>
+        </form>
         <!-- form modal -->
         <div id="delete-user-modal" class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
@@ -113,6 +148,10 @@
             let userId;
             const deleteForm = document.forms['delete-user-form'];
             const btnDeleteUser = document.getElementById('btn-delete-user');
+            const checkAll = $('#checkbox-all');
+            const userCheck = $('input[name="userIds"]');
+            const btnCheckAll = $('.check-all-submit-btn');
+
             $('#delete-user-modal').on('show.bs.modal', function (e) {
                 let button = $(e.relatedTarget);
                 userId = button.data('id');
@@ -123,6 +162,29 @@
                 deleteForm.action = `/admin/delete-user/${userId}`;
                 deleteForm.submit();
             };
+
+            checkAll.change(function () {
+                let isChecked = $(this).prop('checked');
+                userCheck.prop('checked', isChecked);
+                renderCheckAllSubmitBtn();
+            });
+            userCheck.change(function () {
+                let isCheckedAll =
+                    userCheck.length ===
+                    $('input[name="userIds"]:checked').length;
+                console.log(isCheckedAll);
+                checkAll.prop('checked', isCheckedAll);
+                renderCheckAllSubmitBtn();
+            });
+
+            function renderCheckAllSubmitBtn() {
+                var checkedCount = $('input[name="userIds"]:checked').length;
+                if (checkedCount > 0) {
+                    btnCheckAll.attr('disabled', false);
+                } else {
+                    btnCheckAll.attr('disabled', true);
+                }
+            }
         });
     });
 </script>

@@ -82,7 +82,7 @@ exports.postEditUser = (req, res) => {
 };
 
 // POST /admin/delete-user/:userId
-exports.deleteEditUser = (req, res) => {
+exports.deleteUser = (req, res) => {
     User.findById(req.params.userId)
         .then((user) => {
             if (!user) {
@@ -95,6 +95,22 @@ exports.deleteEditUser = (req, res) => {
             res.redirect('/admin/user');
         })
         .catch((err) => console.log(err));
+};
+
+// POST /admin/deleteManyUser
+exports.deleteManyUser = (req, res) => {
+    switch (req.body.action) {
+        case 'delete':
+            User.deleteMany({ _id: { $in: req.body.userIds } })
+                .then(() => {
+                    console.log('Delete Many User');
+                    res.redirect('back');
+                })
+                .catch((err) => console.log(err));
+            break;
+        default:
+            return res.redirect('/');
+    }
 };
 const arr = [
     { day: 13, city: [59, 60, 49, 12, 17, 84] },

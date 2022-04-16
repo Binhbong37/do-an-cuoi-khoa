@@ -14,7 +14,9 @@ router.get('/user', controllerAdmin.getAllUser);
 
 router.get('/user/:userId/edit', controllerAdmin.getEditUser);
 router.post('/edit-user', controllerAdmin.postEditUser);
-router.post('/delete-user/:userId', controllerAdmin.deleteEditUser);
+router.post('/delete-many-user', controllerAdmin.deleteManyUser);
+router.post('/delete-user/:userId', controllerAdmin.deleteUser);
+
 router.get('/test', controllerAdmin.getTest);
 
 module.exports = router;
