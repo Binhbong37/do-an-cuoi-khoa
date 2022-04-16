@@ -36,12 +36,30 @@ const newkq = {
     G_8,
 };
 
+const ITEMS_PER_PAGE = 3;
+
 exports.getAllUser = (req, res) => {
+    const page = +req.query.page || 1;
+    let totalItems;
     User.find()
+        .countDocuments()
+        .then((numUser) => {
+            totalItems = numUser;
+            return User.find()
+                .skip((page - 1) * ITEMS_PER_PAGE) //SỐ PHẦN TỬ SẼ BỎ QUA TRƯỚC ĐÓ KHI Ở TRANG HIỆN TẠI
+                .limit(ITEMS_PER_PAGE); //( phần tử sẽ xuất hiện tại trang hiện tại)
+        })
         .then((user) => {
             res.render('admin/user', {
                 path: '/admin/user',
                 pageTitle: 'List User',
+                currentPage: page,
+                hashNextPage: ITEMS_PER_PAGE * page < totalItems,
+                hashPreviousPage: page > 1,
+                nextPage: page + 1,
+                previousPage: page - 1,
+                lastPage: Math.ceil(totalItems / ITEMS_PER_PAGE),
+                totalItems,
                 user: user,
             });
         })
