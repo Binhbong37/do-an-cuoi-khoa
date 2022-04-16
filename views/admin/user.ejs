@@ -26,19 +26,25 @@
                     <tr>
                         <th scope="col">STT</th>
                         <th scope="col">Họ tên</th>
+                        <th scope="col">Giới tính</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Vai trò</th>
+                        <th scope="col">Địa chỉ</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <% for (let us of user) { %>
+                    <% for (let i = 0; i < user.length; i++) { %>
                     <tr>
-                        <th scope="row"><%= us.id %></th>
-                        <td><%= us.name %></td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <th scope="row"><%= i+ 1%></th>
+                        <td><%= user[i].name %></td>
+                        <td><%= user[i].gender === 0 ? 'Nam' : 'Nữ' %></td>
+                        <td><%= user[i].email %></td>
+                        <td><%= user[i].role %></td>
+                        <td><%= user[i].address %></td>
                         <td>
                             <a
-                                href="/admin/edit/user"
+                                href="/admin/user/<%= user[i]._id %>/edit"
                                 type="button"
                                 class="btn btn-warning"
                                 id="edit"
@@ -50,7 +56,7 @@
                                 class="btn btn-danger"
                                 data-toggle="modal"
                                 data-target="#delete-user-modal"
-                                data-id="<%= us.id %>"
+                                data-id="<%= user[i]._id %>"
                             >
                                 Xóa
                             </a>
@@ -97,17 +103,26 @@
                 </div>
             </div>
         </div>
+        <!-- Tạo cái form chỉ để submit XÓA -->
+        <form name="delete-user-form" method="post"></form>
     </main>
 </body>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         $(document).ready(function () {
             let userId;
+            const deleteForm = document.forms['delete-user-form'];
+            const btnDeleteUser = document.getElementById('btn-delete-user');
             $('#delete-user-modal').on('show.bs.modal', function (e) {
                 let button = $(e.relatedTarget);
                 userId = button.data('id');
                 console.log(userId);
             });
+
+            btnDeleteUser.onclick = function () {
+                deleteForm.action = `/admin/delete-user/${userId}`;
+                deleteForm.submit();
+            };
         });
     });
 </script>

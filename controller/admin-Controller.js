@@ -1,6 +1,7 @@
 const City = require('../model/cities');
 const Result = require('../model/result');
 const Tiket = require('../model/ticketResult');
+const User = require('../model/user');
 
 let randomNum = Math.floor(Math.random() * 90000) + 100000; // 6 số
 let randomNum1 = Math.floor(Math.random() * 90000) + 10000; // 5 số
@@ -36,30 +37,101 @@ const newkq = {
 };
 
 exports.getAllUser = (req, res) => {
-    res.render('admin/user', {
-        path: '/admin/user',
-        pageTitle: 'List User',
-        user: [
-            { id: 1, name: 'Hoan Van Binh' },
-            { id: 2, name: 'Hoan Van Binh' },
-            { id: 3, name: 'Hoan Van Binh 2' },
-        ],
-    });
+    User.find()
+        .then((user) => {
+            res.render('admin/user', {
+                path: '/admin/user',
+                pageTitle: 'List User',
+                user: user,
+            });
+        })
+        .catch((err) => console.log(err));
 };
 
 exports.getEditUser = (req, res) => {
-    res.render('admin/edit-user', {
-        path: '',
-        pageTitle: 'Chỉnh sửa',
-    });
+    const userId = req.params.userId;
+    User.findById(userId)
+        .then((user) => {
+            res.render('admin/edit-user', {
+                path: '',
+                pageTitle: 'Chỉnh sửa',
+                user,
+            });
+        })
+        .catch((err) => console.log(err));
 };
 
+// POST /admin/user-edit
+exports.postEditUser = (req, res) => {
+    const { name, address, gender, position, editUserId } = req.body;
+    User.findById(editUserId)
+        .then((user) => {
+            if (!user) {
+                return res.redirect('/');
+            }
+            user.name = name;
+            user.address = address;
+            user.gender = gender;
+            user.role = position;
+            return user.save().then(() => {
+                console.log('UPDATED USER');
+                res.redirect('/admin/user');
+            });
+        })
+        .catch((err) => console.log(err));
+};
+
+// POST /admin/delete-user/:userId
+exports.deleteEditUser = (req, res) => {
+    User.findById(req.params.userId)
+        .then((user) => {
+            if (!user) {
+                return res.redirect('/');
+            }
+            return User.deleteOne({ _id: req.params.userId });
+        })
+        .then(() => {
+            console.log('DELETED USER');
+            res.redirect('/admin/user');
+        })
+        .catch((err) => console.log(err));
+};
 const arr = [
     { day: 13, city: [59, 60, 49, 12, 17, 84] },
     { day: 14, city: [47, 64, 66, 69, 99, 63] },
     { day: 15, city: [59, 64, 12, 98, 16] },
 ];
 exports.getTest = (req, res) => {
+    const cities = [
+        { id: 'SG', name: 'SG', date: '2022-04-13' },
+        { id: 'CT', name: 'CT', date: '2022-04-13' },
+        { id: 'DN', name: 'DN', date: '2022-04-13' },
+        { id: 'LAOS', name: 'LAOS', date: '2022-04-13' },
+        { id: 'SG1', name: 'SG', date: '2022-04-14' },
+        { id: 'CT2', name: 'CT', date: '2022-04-14' },
+        { id: 'DN3', name: 'DN', date: '2022-04-14' },
+        { id: 'LAOS4', name: 'LAOS', date: '2022-04-14' },
+    ];
+    const results = [
+        { city_id: 'SG', type: 0, value: 32548 },
+        { city_id: 'SG', type: 1, value: 67432 },
+        { city_id: 'SG', type: 2, value: 63633 },
+        { city_id: 'SG', type: 2, value: 80656 },
+        { city_id: 'SG', type: 2, value: 98665 },
+        { city_id: 'LAOS4', type: 0, value: 12552 },
+        { city_id: 'LAOS4', type: 1, value: 57834 },
+        { city_id: 'LAOS4', type: 1, value: 54434 },
+    ];
+    function doKetQua(date, city, result) {
+        const citiesResult = cities.filter((i) => i.date === date);
+        // console.log(citiesResult);
+        const resultList = results.filter(
+            (i) => i.city_id === citiesResult[0].id
+        );
+        // console.log(resultList);
+    }
+    doKetQua('2022-04-13');
+
     Promise.all([Tiket.find(), Result.find()])
         .then(([ticket, result]) => {
             res.render('test', {

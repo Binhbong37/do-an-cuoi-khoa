@@ -12,7 +12,9 @@ router.get('/xsmn', controllerAdmin.getKetquaMN);
 
 router.get('/user', controllerAdmin.getAllUser);
 
-router.get('/edit/user', controllerAdmin.getEditUser);
+router.get('/user/:userId/edit', controllerAdmin.getEditUser);
+router.post('/edit-user', controllerAdmin.postEditUser);
+router.post('/delete-user/:userId', controllerAdmin.deleteEditUser);
 router.get('/test', controllerAdmin.getTest);
 
 module.exports = router;
