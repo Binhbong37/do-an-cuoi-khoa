@@ -122,7 +122,7 @@ exports.deleteManyUser = (req, res) => {
             User.deleteMany({ _id: { $in: req.body.userIds } })
                 .then(() => {
                     console.log('Delete Many User');
-                    res.redirect('back');
+                    res.redirect('/admin/user');
                 })
                 .catch((err) => console.log(err));
             break;

@@ -1,18 +1,57 @@
 <%- include('./includes/head.ejs') %>
+<style></style>
 <body>
     <!-- nav -->
     <%- include('./includes/navigation.ejs') %>
     <main class="container p-5">
-        <form method="post">
-            <div>
-                <input name="789" />
-                <button>Click</button>
+        <form class="needs-validation" novalidate method="post">
+            <div class="form-group">
+                <input type="text" class="form-control" required />
             </div>
-            <form>
-                <input name="test" />
-                <button>Test</button>
-            </form>
+            <div class="form-group">
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Username"
+                    required
+                />
+                <div class="invalid-feedback">Please choose a username.</div>
+            </div>
+            <button class="btn btn-primary" type="submit">Submit form</button>
         </form>
+
+        <script>
+            // Example starter JavaScript for disabling form submissions if there are invalid fields
+            (function () {
+                'use strict';
+                window.addEventListener(
+                    'load',
+                    function () {
+                        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                        var forms =
+                            document.getElementsByClassName('needs-validation');
+                        // Loop over them and prevent submission
+                        var validation = Array.prototype.filter.call(
+                            forms,
+                            function (form) {
+                                form.addEventListener(
+                                    'submit',
+                                    function (event) {
+                                        if (form.checkValidity() === false) {
+                                            event.preventDefault();
+                                            event.stopPropagation();
+                                        }
+                                        form.classList.add('was-validated');
+                                    },
+                                    false
+                                );
+                            }
+                        );
+                    },
+                    false
+                );
+            })();
+        </script>
     </main>
 </body>
 <%- include('./includes/end.ejs') %>

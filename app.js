@@ -3,11 +3,11 @@ const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
 
-const User = require('./model/user');
-
 const xsmnRoutes = require('./routes/xsmn-routes');
 const adminRoutes = require('./routes/admin');
 const authRoutes = require('./routes/auth');
+
+const errorController = require('./controller/error');
 
 const URL_MONGODB = 'mongodb://localhost:27017/do-an';
 
@@ -38,6 +38,7 @@ app.use(require('./routes/ticket'));
 app.use('/admin', adminRoutes);
 app.use('/xsmn', xsmnRoutes);
 app.use(authRoutes);
+app.use(errorController.get404);
 
 const port = process.env.PORT || 8080;
 

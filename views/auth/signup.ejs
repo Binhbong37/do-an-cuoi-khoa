@@ -1,6 +1,5 @@
 <%- include('../includes/head.ejs') %>
   <link rel="stylesheet" href="/css/auth.css">
-
 </head>
 
 
@@ -8,28 +7,49 @@
    <%- include('../includes/navigation.ejs') %>
 
     <main>
-        <div class="container">
+        <div class="container set-width">
                 <!-- center -->
                 <div class="p-3">
                     <h2 style="text-align: center;">Đăng ký tài khoản</h2>
-                    <div class="user-message user-message--error">Error</div>
-                     <form action="/signup" method="post">
-                        <div class="form-group">
+                    <% if(messageErr) { %>
+                      <div class="user-message user-message--error"><%= messageErr%></div>
+                    <% } %>
+                     <form action="/signup" method="post" class="needs-validation" novalidate>
+                      <div class="form-group">
+                        <label for="email">Email</label>
+                        <input 
+                          type="email" 
+                          class="<%= validationErr.find(e => e.param === 'email') ? 'form-control is-invalid' : 'form-control' %>"
+                          name="email" 
+                          id="email" 
+                          value="<%= oldInput.email %>"
+                          >
+                    </div>
+                      <div class="form-group">
                             <label for="name">Họ tên</label>
-                            <input type="text" class="form-control" name = 'name' id="name">
+                            <input
+                            required
+                            type="text"
+                            class="<%= validationErr.find(e => e.param === 'name') ? 'form-control is-invalid' : 'form-control' %>"
+                            name = 'name'
+                            id="name"
+                            value="<%= oldInput.name%>">
                         </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="text" class="form-control" name="email" id="email">
-                        </div>
+                        
                         <div class="form-row">
                           <div class="form-group col-md-6">
                             <label for="password">Mật Khẩu</label>
-                            <input type="password" class="form-control" name="password" id="password">
+                            <input type="password"
+                            class="<%= validationErr.find(e => e.param === 'password') ? 'form-control is-invalid' : 'form-control' %>"
+                            name="password"
+                            id="password"
+                            value="<%= oldInput.password%>">
                           </div>
                           <div class="form-group col-md-6">
                             <label for="password1">Nhập lại mật khẩu</label>
-                            <input type="password" class="form-control" name="password1" id="password1">
+                            <input type="password" 
+                            class="<%= validationErr.find(e => e.param === 'password1') ? 'form-control is-invalid' : 'form-control' %>" 
+                            name="password1" id="password1">
                           </div>
                         </div>
                         <div class="form-group">
@@ -45,10 +65,10 @@
                             </select>
                           </div>
                         </div>
-                        <div style="text-align: center">
+                        <div style="text-align: center" class="mt-3">
                           <button type="submit" class="btn btn-primary mr-3">Ok</button>
                           <button type="button" class="btn btn-danger" id="reset">Reset</button>
-                          <a class="btn btn-link" href="#">Đã có tài khoản</a>
+                          <a class="btn btn-link" href="/login">Đã có tài khoản</a>
                         </div>
                     </form>
 

@@ -1,3 +1,40 @@
 label {
     font-weight: bold;
 }
+.form-control input:focus,
+.form-control textarea:focus {
+  outline-color: #00695c;
+}
+
+.form-control input.invalid,
+.form-control textarea.invalid {
+  border-color: red;
+}
+.set-width {
+    max-width: 40%;
+    padding: 1rem;
+}
+
+.user-message {
+  margin: auto;
+  border: 1px solid #4771fa;
+  padding: 0.5rem;
+  border-radius: 3px;
+  background: #b9c9ff;
+  text-align: center;
+}
+
+.user-message--error {
+  border-color: red;
+  background: rgb(255, 176, 176);
+  color: red;
+}
+.form-control input:focus,
+.form-control textarea:focus {
+  outline-color: #00695c;
+}
+
+.form-control input.invalid,
+.form-control textarea.invalid {
+  border-color: red;
+}
