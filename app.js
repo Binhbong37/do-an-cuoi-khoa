@@ -3,7 +3,7 @@ const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
 
-const xsmnRoutes = require('./routes/xsmn-routes');
+const xsmnRoutes = require('./routes/kqxs-routes');
 const adminRoutes = require('./routes/admin');
 const authRoutes = require('./routes/auth');
 
@@ -29,14 +29,14 @@ app.set('views', 'views');
 
 app.get('/', (req, res) => {
     res.render('home', {
-        path: '/xsmb',
+        path: '',
         pageTitle: 'Trang chủ',
     });
 });
 
 app.use(require('./routes/ticket'));
 app.use('/admin', adminRoutes);
-app.use('/xsmn', xsmnRoutes);
+app.use('/ket-qua-xo-so', xsmnRoutes);
 app.use(authRoutes);
 app.use(errorController.get404);
 

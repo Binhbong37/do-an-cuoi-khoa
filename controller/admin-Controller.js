@@ -210,7 +210,7 @@ exports.postQuaySoMN = (req, res) => {
                 })
                 .then(() => {
                     console.log('CREATE MN');
-                    res.redirect('/admin/xsmn');
+                    res.redirect('/ket-qua-xo-so/mien-nam');
                 })
                 .catch((err) => console.log(err));
         })
@@ -243,7 +243,7 @@ exports.postQuaySoMB = (req, res) => {
                 })
                 .then(() => {
                     console.log('CREATE MB');
-                    res.redirect('/admin/xsmn');
+                    res.redirect('/ket-qua-xo-so/mien-bac');
                 })
                 .catch((err) => console.log(err));
         })
@@ -276,35 +276,9 @@ exports.postQuaySoMT = (req, res) => {
                 })
                 .then(() => {
                     console.log('CREATE MT');
-                    res.redirect('/admin/xsmn');
+                    res.redirect('/ket-qua-xo-so/mien-trung');
                 })
                 .catch((err) => console.log(err));
-        })
-        .catch((err) => console.log(err));
-};
-
-// GET admin/quay-so/mn
-
-exports.getKetquaMN = (req, res) => {
-    Result.find({ role: 'mn' })
-        .populate('cityId')
-        .then((allRes) => {
-            const dayRes = allRes.map((day) => {
-                return day.cityId.date;
-            });
-            // Lọc phần từ trùng nhau trong 1 mảng, push qua bảng mới
-            let newArr = [];
-            for (let i = 0; i < dayRes.length; i++) {
-                if (newArr.indexOf(dayRes[i]) === -1) {
-                    newArr.push(dayRes[i]);
-                }
-            }
-            res.render('xsmn/xsmn', {
-                path: '/xsmn',
-                pageTitle: 'Xổ số Miền Nam',
-                allRes,
-                day: newArr,
-            });
         })
         .catch((err) => console.log(err));
 };
